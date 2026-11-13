@@ -1,0 +1,156 @@
+/* ==========================================================================
+   TEMA CERAH: STRAWBERRY MATCHA LIGHT (emerald)
+   Semua peraturan dilingkup di bawah body.theme-light, jadi hanya aktif
+   apabila mod cerah dihidupkan. Tema gelap kekal dalam style.css.
+   ========================================================================== */
+
+   body.theme-light { background-color: #f4f9ee;
+   }
+   
+   body.theme-light .stage-container {
+          background: linear-gradient(135deg, #fff6f8 0%, #f5faee 50%, #e8f3de 100%);
+          box-shadow: 0 0 50px rgba(43, 84, 38, 0.18);
+   }
+   
+   body.theme-light .bg-overlay {
+          background: radial-gradient(circle at center, rgba(255, 255, 255, 0) 0%, rgba(216, 235, 211, 0.5) 100%);
+   }
+   
+   body.theme-light .light-beam {
+          background: linear-gradient(180deg, rgba(255, 140, 163, 0.2) 0%, rgba(255, 255, 255, 0) 80%);
+   }
+   
+   body.theme-light .frame-border { border-color: rgba(230, 92, 123, 0.35);
+   }
+   
+   body.theme-light .main-header { color: var(--matcha-dark);
+   }
+   
+   body.theme-light .bismillah-text {
+          color: var(--strawberry-dark);
+          text-shadow: 0 2px 10px rgba(255, 140, 163, 0.35);
+   }
+   
+   body.theme-light .event-title {
+          background: linear-gradient(180deg, var(--matcha-main) 0%, var(--matcha-dark) 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          text-shadow: none;
+   }
+   
+   body.theme-light .school-title { color: var(--matcha-main);
+   }
+   
+   body.theme-light .phase-card {
+          background: rgba(255, 255, 255, 0.82);
+          border: 2px solid #ffc2cf;
+          box-shadow: 0 14px 40px rgba(184, 50, 83, 0.14);
+   }
+   
+   body.theme-light .access-granted-box {
+          background: #eaf6e6;
+          border-color: var(--strawberry-main);
+          color: var(--matcha-dark);
+   }
+   
+   body.theme-light .granted-title { color: #2b8a4b;
+   }
+   
+   body.theme-light .granted-sub { color: #4a5c47;
+   }
+   
+   body.theme-light .system-footer {
+          background: rgba(255, 255, 255, 0.72);
+          border-top: 1px solid rgba(230, 92, 123, 0.25);
+          color: var(--matcha-main);
+   }
+   
+   body.theme-light .admin-trigger { color: var(--strawberry-dark);
+   }
+   
+   body.theme-light .admin-drawer {
+          background: #fffafb;
+          color: var(--matcha-dark);
+          box-shadow: 0 -10px 40px rgba(43, 84, 38, 0.2);
+   }
+   
+   body.theme-light .admin-header { border-bottom-color: rgba(43, 84, 38, 0.15);
+   }
+   
+   body.theme-light .admin-header h3 { color: var(--strawberry-dark);
+   }
+   
+   body.theme-light .close-btn { color: var(--matcha-dark);
+   }
+   
+   body.theme-light .form-group label { color: #4a5c47;
+   }
+   
+   body.theme-light .form-group input,
+   body.theme-light .form-group select {
+          background: #ffffff;
+          color: var(--matcha-dark);
+          border: 1px solid #c5dbc2;
+   }
+   
+   body.theme-light .btn-reset { background: var(--matcha-soft); color: var(--matcha-dark);
+   }
+   
+   body.theme-light {
+          --matcha-dark: #0c3b2e;   /* teks utama, tajuk */
+          --matcha-main: #17624a;   /* butang, ikon, aksen */
+          --matcha-light: #3a9a73;  /* sempadan, teks sekunder */
+          --matcha-soft: #d4ede3;   /* latar lembut */
+   }
+   
+   body.theme-light { background-color: #eff8f3;
+   }
+   
+   body.theme-light .stage-container {
+          background: linear-gradient(135deg, #fff6f8 0%, #f0f9f4 50%, #e1f2ea 100%);
+          box-shadow: 0 0 50px rgba(12, 59, 46, 0.18);
+   }
+   
+   body.theme-light .bg-overlay {
+          background: radial-gradient(circle at center, rgba(255, 255, 255, 0) 0%, rgba(204, 232, 220, 0.5) 100%);
+   }
+   
+   body.theme-light .instruction,
+   body.theme-light .granted-sub,
+   body.theme-light .form-group label { color: #3f5f54;
+   }
+   
+   body.theme-light #accessCode { border-color: #bfe0d2;
+   }
+   
+   body.theme-light .progress-bar-container { background: #dcefe6;
+   }
+   
+   body.theme-light .timer-path-background { stroke: #dcefe6;
+   }
+   
+   body.theme-light .btn-primary { box-shadow: 0 8px 20px rgba(23, 98, 74, 0.35);
+   }
+   
+   body.theme-light .access-granted-box { background: #e6f5ee;
+   }
+   
+   body.theme-light .granted-title { color: #17805a;
+   }
+   
+   body.theme-light .admin-drawer { box-shadow: 0 -10px 40px rgba(12, 59, 46, 0.2);
+   }
+   
+   body.theme-light .admin-header { border-bottom-color: rgba(12, 59, 46, 0.15);
+   }
+   
+   body.theme-light .form-group input,
+   body.theme-light .form-group select { border-color: #bfe0d2;
+   }
+   
+   body.theme-light .theme-toggle { color: var(--strawberry-dark);
+   }
+   
+   /* Latar sekeliling pentas (letterbox) pada skrin lebar */
+   html:has(body.theme-light) { background-color: #eff8f3; }

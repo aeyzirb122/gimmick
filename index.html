@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Gimik Pelancaran Rasmi - Majlis Khatam al-Quran SK Merpati Jepang 2026</title>
+    <!-- Google Fonts: Amiri, Cairo, Reem Kufi -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;800&family=Reem+Kufi:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS Style -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-light.css">
+</head>
+<body id="appBody">
+<script>
+    // Terap tema tersimpan sebelum paparan dilukis (lalai: cerah)
+    try { if (localStorage.getItem("skmj2026_theme") !== "dark") document.body.classList.add("theme-light"); }
+    catch (e) { document.body.classList.add("theme-light"); }
+</script>
+
+    <div class="stage-container" id="stageContainer">
+        <!-- Background Decorative Canvas & Effects -->
+        <canvas id="bgCanvas"></canvas>
+
+        <div class="bg-overlay"></div>
+        <div class="light-beam beam-left"></div>
+        <div class="light-beam beam-right"></div>
+
+        <!-- Frame Border Islamik Modern -->
+        <div class="frame-border">
+            <div class="corner corner-tl"></div>
+            <div class="corner corner-tr"></div>
+            <div class="corner corner-bl"></div>
+            <div class="corner corner-br"></div>
+        </div>
+
+        <!-- Tajuk Utama / Header -->
+        <header class="main-header">
+            <div class="bismillah-text">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+            <h1 class="event-title">MAJLIS KHATAM AL-QURAN</h1>
+            <h2 class="school-title">
+                <span class="school-name">SK MERPATI JEPANG</span> 
+                <span class="edition-badge">2026</span>
+            </h2>
+        </header>
+
+        <!-- MAIN VIEWPORT -->
+        <main class="content-viewport">
+
+            <!-- FASA 1: AUTHENTICATION -->
+            <section id="phase-auth" class="phase-card active">
+                <div class="auth-box">
+                    <div class="icon-orb pulse-glow">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3>PENGESAHAN KOD AKSES VIP</h3>
+                    <p class="instruction">ADMINISTRATOR AUTHORIZATION REQUIRED</p>
+
+                    <form id="authForm" autocomplete="off" onsubmit="event.preventDefault(); triggerAuth();">
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-key input-icon"></i>
+                            <input type="text" id="accessCode" placeholder="ENTER ACCESS CODE" maxlength="25">
+                        </div>
+                        <button type="submit" id="btnAuth" class="btn-primary">
+                            <span class="btn-text">AUTHENTICATE</span>
+                            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                        </button>
+                    </form>
+                    <div id="authError" class="error-msg">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Kod Akses Tidak Sah! Sila cuba lagi.
+                    </div>
+                </div>
+            </section>
+
+            <!-- FASA 2: AI SECURITY VERIFICATION & QURAN LOADING -->
+            <section id="phase-scan" class="phase-card">
+                <div class="ai-verification-container">
+                    
+                    <!-- Animasi Al-Quran Memancar/Bergerak -->
+                    <div class="quran-anim-wrapper">
+                        <div class="quran-glow-ring"></div>
+                        <i class="fa-solid fa-book-quran quran-icon-anim"></i>
+                    </div>
+
+                    <div class="ai-badge-title">
+                        <i class="fa-solid fa-microchip"></i> AI SECURITY VERIFICATION
+                    </div>
+
+                    <!-- Peratusan Loading 0% - 100% -->
+                    <div class="percent-display" id="percentDisplay">0%</div>
+
+                    <div class="progress-bar-container">
+                        <div id="scanProgress" class="progress-bar-fill"></div>
+                    </div>
+
+                    <!-- Teks Status Log Animasi -->
+                    <div class="log-status-text" id="logStatusText">INITIALIZING...</div>
+
+                    <!-- Kotak Boom Access Granted -->
+                    <div class="access-granted-box hidden" id="accessGrantedBox">
+                        <div class="granted-title"><i class="fa-solid fa-circle-check"></i> ACCESS GRANTED</div>
+                        <div class="granted-sub">ADMINISTRATOR VERIFIED | ALL SYSTEM READY</div>
+                        <div class="protocol-box">KHATAM AL-QURAN PROTOCOL ACTIVATED</div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- FASA 3: COUNTDOWN -->
+            <section id="phase-countdown" class="phase-card">
+                <div class="countdown-wrapper">
+                    <div class="countdown-label">LAUNCH SEQUENCE INITIALIZED</div>
+                    <div class="countdown-circle">
+                        <svg class="timer-svg" viewBox="0 0 100 100">
+                            <circle class="timer-path-background" cx="50" cy="50" r="45"></circle>
+                            <circle id="timerPathProgress" class="timer-path-remaining" cx="50" cy="50" r="45" stroke-dasharray="283" stroke-dashoffset="0"></circle>
+                        </svg>
+                        <span id="countdownNumber" class="countdown-num">03</span>
+                    </div>
+                    <div class="countdown-sub">SAAT MENUJU PERASMIAN UTAMA</div>
+                </div>
+            </section>
+
+            <!-- FASA 4: VIDEO FULLSCREEN AUTOMATIK -->
+            <section id="phase-reveal" class="phase-card video-fullscreen-card">
+                <div id="videoContainer" class="video-container-full">
+                    <video id="launchVideo" class="custom-video-full" controls playsinline webkit-playsinline x5-playsinline>
+                        <source id="videoSource" src="launch.mp4" type="video/mp4">
+                        Browser anda tidak menyokong elemen video.
+                    </video>
+                    <iframe id="youtubeIframe" class="youtube-iframe hidden" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+                    <!-- Mesej ralat jika video gagal dimuat -->
+                    <div id="videoError" class="video-error hidden">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <p id="videoErrorText">Video tidak dapat dimuat.</p>
+                        <button type="button" onclick="retryVideo()">CUBA LAGI</button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer Control Status Bar -->
+        <footer class="system-footer">
+            <div class="footer-left">
+                <button type="button" class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Tukar mod cerah / gelap">
+                    <i class="fa-solid fa-moon"></i> <span>MOD GELAP</span>
+                </button>
+                <div class="sys-status">
+                    <span class="dot blink"></span>
+                    <span id="systemStateText">STATUS: MENUNGGU PENGESAHAN KOD VIP</span>
+                </div>
+            </div>
+            <div class="admin-trigger" id="adminTrigger" onclick="toggleAdminDrawer()" title="Ctrl+Shift+S">
+                <i class="fa-solid fa-gears"></i> SETTING
+            </div>
+        </footer>
+
+        <!-- ADMIN & CONTROL DRAWER -->
+        <div id="adminDrawer" class="admin-drawer">
+            <div class="admin-header">
+                <h3><i class="fa-solid fa-sliders"></i> Panel Kawalan Gimik VIP</h3>
+                <button class="close-btn" onclick="toggleAdminDrawer()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="admin-body">
+                <div class="form-group">
+                    <label>Tukar Kod Akses VIP:</label>
+                    <input type="text" id="settingAccessCode" value="SKMJ2026">
+                </div>
+
+                <div class="form-group">
+                    <label>Pilihan Media Video Pelancaran:</label>
+                    <select id="settingVideoType" onchange="onVideoTypeChange()">
+                        <option value="direct">Direct MP4 Video Link / File</option>
+                        <option value="youtube">YouTube Embed URL</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>URL / Nama Fail Video Pelancaran:</label>
+                    <input type="text" id="settingVideoUrl" value="launch.mp4">
+                </div>
+
+                <div class="form-group">
+                    <label>Masa Countdown (Saat):</label>
+                    <input type="number" id="settingCountdownTime" value="3" min="1" max="10">
+                </div>
+
+                <div class="admin-actions">
+                    <button class="btn-save" onclick="saveSettings()"><i class="fa-solid fa-floppy-disk"></i> Simpan Tetapan</button>
+                    <button class="btn-reset" onclick="resetToPhase1()"><i class="fa-solid fa-rotate-left"></i> Reset Ke Fasa 1</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS Application Script -->
+    <script src="script.js"></script>
+</body>
+</html>
