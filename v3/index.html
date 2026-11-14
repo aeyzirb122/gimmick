@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pelancaran Rasmi - Majlis Khatam al-Quran SK Merpati Jepang 2026</title>
+<link rel="stylesheet" href="style.css?v=1">
+<script src="config.js?v=1"></script>
+</head>
+<body>
+<script>
+    // Tema dipilih sebelum paparan dilukis. Lalai mengikut config.js (cerah).
+    (function () {
+        var def = (window.LAUNCH_CONFIG && LAUNCH_CONFIG.defaultTheme) || "light";
+        var t = def;
+        try { t = localStorage.getItem("skmj2026_theme") || def; } catch (e) {}
+        document.body.classList.add(t === "dark" ? "theme-dark" : "theme-light");
+    })();
+</script>
+
+<canvas id="bgCanvas"></canvas>
+
+<div id="viewport">
+  <div id="stage" data-phase="1">
+    <canvas id="sceneCanvas" width="1920" height="1080"></canvas>
+
+    <header class="titleblock">
+      <div class="bismillah">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+      <h1>MAJLIS KHATAM AL-QURAN</h1>
+      <div class="sub"><span class="line"></span>SK MERPATI JEPANG<i></i>2026<span class="line"></span></div>
+    </header>
+
+    <!-- Cincin tekan & tahan / kiraan detik -->
+    <div id="holdZone" role="button" aria-label="Tekan dan tahan untuk melancarkan">
+      <div class="halo"></div>
+      <svg viewBox="0 0 240 240" class="ringsvg">
+        <circle class="track" cx="120" cy="120" r="100"/>
+        <circle class="prog" id="ringProg" cx="120" cy="120" r="100" transform="rotate(-90 120 120)"/>
+      </svg>
+      <div class="ring-center">
+        <svg id="icoPress" viewBox="0 0 48 48" class="ico"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M14 30c0-6 4-12 10-12s10 6 10 12"/><path d="M19 32c0-4 2-8 5-8s5 4 5 8"/><path d="M24 32v6"/><path d="M9 26c0-9 6-17 15-17s15 8 15 17"/></g></svg>
+        <svg id="icoCheck" viewBox="0 0 48 48" class="ico hidden"><path d="M11 25l9 9 17-19" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div id="num" class="num hidden">3</div>
+      </div>
+    </div>
+
+    <div id="pill" class="pill">
+      <div id="pillMain">Tekan &amp; tahan untuk melancarkan</div>
+      <div id="pillSub">Tetamu Kehormat</div>
+    </div>
+  </div>
+</div>
+
+<!-- Lapisan video & kesan pelancaran (di luar pentas supaya penuh skrin) -->
+<div id="videoLayer" class="hidden">
+  <video id="launchVideo" playsinline preload="auto"></video>
+  <iframe id="youtubeIframe" class="hidden" allow="autoplay; fullscreen" allowfullscreen frameborder="0"></iframe>
+  <div id="videoError" class="hidden">
+    <p id="videoErrorText"></p>
+    <button type="button" onclick="retryVideo()">Cuba lagi</button>
+  </div>
+</div>
+<div id="launchFlash"></div>
+
+<button id="themeToggle" type="button" onclick="toggleTheme()" aria-label="Tukar tema">
+  <svg class="i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></svg>
+  <svg class="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+  <span id="themeLabel">MOD GELAP</span>
+</button>
+
+<div id="toast" class="hidden"></div>
+<div id="rehearsal" class="hidden">
+  <b>LATIHAN</b>
+  <span>1-4 lompat langkah</span><span>R set semula</span><span>V terus ke video</span><span>F skrin penuh</span><span>T tema</span>
+</div>
+
+<script src="lib/three.bundle.js?v=1"></script>
+<script src="lib/gsap.min.js?v=1"></script>
+<script src="scene3d.js?v=1"></script>
+<script src="script.js?v=1"></script>
+</body>
+</html>
